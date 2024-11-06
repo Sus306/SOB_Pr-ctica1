@@ -30,7 +30,10 @@ public class Usuaris implements Serializable{
      public Usuaris(String u){
         this.username=u;
     }
-
+     public void UsuarisList(Usuaris Usuaris){
+        this.id=Usuaris.getId();
+        this.username=Usuaris.getUsername();
+    }
     public long getId() {
         return id;
     }

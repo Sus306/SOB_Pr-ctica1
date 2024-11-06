@@ -22,7 +22,7 @@ import model.entities.Usuaris;
  * @author Jialiang Chen
  */
 @Stateless
-@Path("/rest/api/v1/customer")
+@Path("/rest/api/v1/Usuaris")
 public class UsuariService extends AbstractFacade<Usuaris> {
     @PersistenceContext(unitName = "Homework1PU")
     private EntityManager em;
@@ -38,13 +38,17 @@ public class UsuariService extends AbstractFacade<Usuaris> {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCustomers(){
-        List<Usuaris> customers = super.findAll();
-        List<Usuaris> u = new LinkedList<Usuaris>();
-        for(Usuaris c : customers){
-            Usuaris.add(new Usuaris(c));
+    public Response getUsuaris(){
+       List<Usuaris> usu = super.findAll();
+       List<Usuaris> u = new LinkedList<Usuaris>();
+        for(Usuaris c : usu){
+            u.add(c);           
+            
+            /* ANTES:
+            for(Usuaris c : usu){
+            u.add(new Usuaris(c));*/
         }
-        return Response.ok(Usuaris).build();
+        return Response.ok(usu).build();
     }
     
     @GET
@@ -54,8 +58,7 @@ public class UsuariService extends AbstractFacade<Usuaris> {
         Usuaris u = em.find(Usuaris.class, id);
         //Only 1 customer may be found with the ID.
         if (u!=null){
-            Usuaris u = new Usuaris(u.getUsuari());
-            return Response.status(Response.Status.OK).entity(Usuaris).build();
+            return Response.status(Response.Status.OK).entity(u.getUsername()).build();
         }
         return Response.status(Response.Status.NOT_FOUND).entity("Customer with this id does not exist.").build();
     }
@@ -77,6 +80,6 @@ public class UsuariService extends AbstractFacade<Usuaris> {
             //Edit customer with provided info.
             super.edit(c);
         }
-        return Response.ok().entity(new Usuaris(c)).build();
+        return Response.ok().entity(c).build();
     }
 }
