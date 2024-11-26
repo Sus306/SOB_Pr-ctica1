@@ -10,6 +10,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Usuaris implements Serializable{
     private String username;
     private String password;
     @OneToMany(mappedBy = "author")
-    private Articles article;
+    private List<Articles> article;
     
      public Usuaris(String u){
         this.username=u;
@@ -58,11 +59,11 @@ public class Usuaris implements Serializable{
         this.password = password;
     }
 
-    public Articles getArticles() {
+    public List<Articles> getArticles() {
         return article;
     }
 
-    public void setArticles(Articles rental) {
+    public void setArticles(List<Articles> rental) {
         this.article = rental;
     }
     
