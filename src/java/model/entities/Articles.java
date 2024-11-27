@@ -6,14 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 import jakarta.validation.constraints.Size;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -62,7 +60,7 @@ public class Articles implements Serializable {
     // Constructor vacío requerido por JPA
     public Articles() {}
 
-    // Constructor para facilitar la creación de artículos
+   /* // Constructor para facilitar la creación de artículos
     public Articles(Usuaris author, String title, String content, List<String> topics, boolean isPublic) {
         this.author = author;
         this.title = title;
@@ -71,7 +69,7 @@ public class Articles implements Serializable {
         this.isPublic = isPublic;
         this.publicationDate = new Date(); // Fecha actual como fecha de publicación
         this.views = 0; // Inicializamos las visualizaciones a cero
-    }
+    }*/
 
     // Getters y Setters
     public Long getId() {
