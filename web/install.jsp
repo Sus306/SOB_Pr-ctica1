@@ -48,6 +48,21 @@
                 }
                 out.println("<pre> -> " + datum + "<pre>");
             }
+            String insertCustomerSQL1 = "INSERT INTO " + schema + ".CUSTOMER VALUES (NEXT VALUE FOR CUSTOMER_GEN, 'johndoe@example.com', 0, NULL, 'password123', NULL, 'johndoe')";
+                stmt.executeUpdate(insertCustomerSQL1);
+                // Recuperar el último valor de clave generada
+                String identityQuery1 = "SELECT id FROM " + schema + ".CUSTOMER WHERE username = 'johndoe'";
+                ResultSet rs1 = stmt.executeQuery(identityQuery1);
+                Long customerid1 = null;
+
+                if (rs1.next()) {
+                    customerid1 = rs1.getLong(1);
+                }
+
+                out.println("<pre>Generated topic ID: " + customerid1 + "</pre>");
+                String insertCommentSQL1 = "INSERT INTO " + schema + ".ARTICLE VALUES (NEXT VALUE FOR ARTICLE_GEN, 'Content about databases...', NULL, 1, NULL, 'A brief overview of databases', 'Understanding Databases', 'Computer Science', 'Databases', 0, " + customerid1 + ")";
+                stmt.executeUpdate(insertCommentSQL1);
+                out.println("<pre> -> " + insertCommentSQL1+"</pre>");
         %>
         <button onclick="window.location='<%=request.getSession().getServletContext().getContextPath()%>'">Go home</button>
     </body>

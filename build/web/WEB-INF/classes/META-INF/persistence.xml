@@ -8,10 +8,6 @@
     <properties>
         <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
-     <!-- Generación de esquema -->
-        <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
-
-        <!-- Logging detallado -->
-        <property name="eclipselink.logging.level" value="FINE"/>
+    
   </persistence-unit>
 </persistence>
